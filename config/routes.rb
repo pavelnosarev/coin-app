@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   delete "/coins/:id" => "coins#destroy"
 
   post "/sessions" => "sessions#create"
+  patch "/usercoins/:id" => "usercoins#update"
+  get "/usercoins/:id" => "usercoins#index"
 end
