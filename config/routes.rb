@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   delete "/coins/:id" => "coins#destroy"
 
   post "/sessions" => "sessions#create"
+
+  post "/usercoins" => "usercoins#create"
+  get "/usercoins" => "usercoins#index"
   patch "/usercoins/:id" => "usercoins#update"
-  get "/usercoins/:id" => "usercoins#index"
+  # show "/usercoins/:id" => "usercoins#update"
+  delete "/usercoins/:id" => "usercoins#destroy"
 end

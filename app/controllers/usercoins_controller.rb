@@ -1,6 +1,6 @@
 class UsercoinsController < ApplicationController
   def index
-    usercoins = UserCoin.all
+    usercoins = UserCoin.where(user_id: current_user.id)
     render json: usercoins.as_json
   end
 
@@ -8,13 +8,32 @@ class UsercoinsController < ApplicationController
     usercoin_id = params["id"]
     usercoin = UserCoin.find_by(id: usercoin_id)
     usercoin.status = params["status"] || usercoin.status
-    usercoin.user_id = params["user_id"] || usercoin.user_id
-    usercoin.coin_id = params["coin_id"] || usercoin.coin_id
     if usercoin.save
       render json: usercoin.as_json
     else
       render json: { errors: coin.errors.full_messages },
              status: 422
     end
+  end
+
+  def create
+    usercoin = UserCoin.new(
+      coin_id: params["coin_id"],
+      status: params["status"] || false,
+      user_id: current_user.id,
+    )
+    if usercoin.save
+      render json: usercoin
+    else
+      render json: { errors: usercoin.errors.full_messages },
+             status: 422
+    end
+  end
+
+  def destroy
+    usercoin_id = params[:id]
+    usercoin = UserCoin.find_by(id: usercoin_id)
+    usercoin.destroy
+    render json: { message: "Coin successfully deleted from list!" }
   end
 end

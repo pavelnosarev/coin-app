@@ -2,7 +2,7 @@ class CoinsController < ApplicationController
   #get index
   def index
     coins = Coin.all
-    render json: coins.as_json
+    render json: coins
   end
 
   #get :id show
