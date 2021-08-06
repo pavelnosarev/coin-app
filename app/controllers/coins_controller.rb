@@ -1,5 +1,6 @@
 class CoinsController < ApplicationController
-  #get index
+  before_action :authenticate_admin, except: [:index, :show]
+
   def index
     coins = Coin.all
     render json: coins

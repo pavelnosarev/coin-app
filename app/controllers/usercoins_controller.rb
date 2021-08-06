@@ -1,4 +1,6 @@
 class UsercoinsController < ApplicationController
+  before_action :authenticate_user
+
   def index
     usercoins = UserCoin.where(user_id: current_user.id)
     render json: usercoins.as_json
@@ -14,6 +16,12 @@ class UsercoinsController < ApplicationController
       render json: { errors: coin.errors.full_messages },
              status: 422
     end
+  end
+
+  def show
+    usercoin_id = params["id"]
+    usercoin = UserCoin.find(usercoin_id)
+    render json: usercoin
   end
 
   def create
