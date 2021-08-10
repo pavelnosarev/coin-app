@@ -3,7 +3,7 @@ class UsercoinsController < ApplicationController
 
   def index
     usercoins = UserCoin.where(user_id: current_user.id)
-    render json: usercoins.as_json
+    render json: usercoins
   end
 
   def update
