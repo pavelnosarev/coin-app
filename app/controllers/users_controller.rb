@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     end
   end
 
-  before_action :authenticate_admin
+  # before_action :authenticate_admin
 
   def update
     user_id = params["id"]

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   post "/users" => "users#create"
 
-  get "/index" => "coins#index"
+  get "/coins" => "coins#index"
   get "/coins/:id" => "coins#show"
   post "/coins" => "coins#create"
   patch "/coins/:id" => "coins#update"
