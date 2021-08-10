@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_admin, except: [:create]
+
   def create
     user = User.new(
       username: params[:username],
@@ -12,8 +14,6 @@ class UsersController < ApplicationController
       render json: { errors: user.errors.full_messages }, status: :bad_request
     end
   end
-
-  # before_action :authenticate_admin
 
   def update
     user_id = params["id"]
