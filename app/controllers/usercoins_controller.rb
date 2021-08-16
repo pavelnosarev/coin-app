@@ -10,11 +10,11 @@ class UsercoinsController < ApplicationController
     usercoin_id = params["id"]
     usercoin = UserCoin.find_by(id: usercoin_id)
     usercoin.status = params["status"] || usercoin.status
-    usercoin.metal = params["metal"] || usercoin.metal
-    usercoin.description = params["description"] || usercoin.description
-    usercoin.denomination = params["denomination"] || usercoin.denomination
-    usercoin.mint = params["mint"] || usercoin.mint
-    usercoin.image = params["image"] || usercoin.image
+    # usercoin.metal = params["metal"] || usercoin.metal
+    # usercoin.description = params["description"] || usercoin.description
+    # usercoin.denomination = params["denomination"] || usercoin.denomination
+    # usercoin.mint = params["mint"] || usercoin.mint
+    # usercoin.image = params["image"] || usercoin.image
     if usercoin.save
       render json: usercoin.as_json
     else
